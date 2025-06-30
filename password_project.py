@@ -8,8 +8,8 @@ digits = string.digits
 special_chars = string.punctuation
 class ValidationError(Exception):
     pass
-def generate_password(len = 9):
-    if len < 6:
+def generate_password(length = 9):
+    if length < 6:
         raise ValidationError("Password length should be at least 6")
 
     password_chars = [random.choice(uppercase), 
@@ -17,7 +17,7 @@ def generate_password(len = 9):
                       random.choice(lowercase),
                       random.choice(digits)]
 
-    for i in range(len - 4):
+    for i in range(length - 4):
         password_chars += random.choice(uppercase + lowercase + digits + special_chars)
    
     random.shuffle(password_chars)
