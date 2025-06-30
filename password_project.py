@@ -7,8 +7,25 @@ lowercase = string.ascii_lowercase
 digits = string.digits
 special_chars = string.punctuation
 class ValidationError(Exception):
+    """
+    Custom exception used for password generation validation errors,
+    such as when the requested length is too short.
+    """
     pass
 def generate_password(length = 9):
+    """
+    Generates a random password that includes at least one uppercase letter,
+    one lowercase letter, one digit, and one special character.
+
+    Args:
+        length (int): Desired length of the password. Must be at least 6.
+
+    Returns:
+        str: A randomly generated password that meets all the criteria.
+
+    Raises:
+        ValidationError: If the provided length is less than 6.
+    """
     if length < 6:
         raise ValidationError("Password length should be at least 6")
 
@@ -26,6 +43,20 @@ def generate_password(length = 9):
     return password
     
 def password_validator(password: str):
+    """
+    Validates a password to ensure it meets the following criteria:
+    - At least 6 characters long
+    - Contains at least one uppercase letter
+    - Contains at least one lowercase letter
+    - Contains at least one digit
+    - Contains at least one special character
+
+    Args:
+        password (str): The password string to validate.
+
+    Raises:
+        ValueError: If the password does not meet one or more criteria.
+    """
     if password is None:
         raise ValueError('Validation Error: Password cannot be empty.')
     if len(password) < 6:
