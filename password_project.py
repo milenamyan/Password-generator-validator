@@ -38,6 +38,23 @@ def password_validator(password: str):
         raise ValueError('Sorry, your password must include at least one digit.')
     if not any(i in special_chars for i in password):
         raise ValueError('Sorry, your password must include at least one special character.')
-    
     print('Password is valid')
+
+
+print("=== Password Generator and Validator ===")
+yes_no = input('Do you want to generate a new password? (yes/no): ')
+if yes_no == 'yes':
+    try:
+        length = int(input('Enter the desired password length (minimum 6): '))
+        print(generate_password(length))
+    except ValueError:
+        print('Input Error: Password length must be a number.')
+    except ValidationError as e:
+        print(e)
+elif yes_no == 'no':
+    try:
+        password = input('Enter your password to validate: ')
+        password_validator(password)
+    except ValueError as e:
+        print(e)
     
